@@ -1,22 +1,23 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Form } from "semantic-ui-react";
 
 function PokemonForm({handleAdd}) {
+
   const [name, setName] = useState("");
   const [hp, setHp] = useState(0);
-  const [frontSprite, setFrontSprite] = useState("");
-  const [backSprite, setBackSprite] = useState("");
+  const [frontSprites, setFrontSprites] = useState("");
+  const [backSprites, setBackSprites] = useState("");
 
-  function submitHandler(e) {
-    e.preventDefault();
+  function submitHandler(event) {
+    event.preventDefault();
 
     const newPokemon = {
       id: 1,
       name: name,
       hp: hp,
       sprites: {
-        front: frontSprite,
-        back: backSprite
+        front: frontSprites,
+        back: backSprites
       },
     };
 
@@ -31,8 +32,8 @@ function PokemonForm({handleAdd}) {
     handleAdd(newPokemon);
     setName("");
     setHp(0);
-    setFrontSprite("");
-    setBackSprite("");
+    setFrontSprites("");
+    setBackSprites("");
   }
 
   return (
@@ -42,21 +43,21 @@ function PokemonForm({handleAdd}) {
         onSubmit={submitHandler}
       >
         <Form.Group widths="equal">
-          <Form.Input onChange={(e) => setName(e.target.value)} fluid label="Name" placeholder="Name" name="name" />
-          <Form.Input onChange={(e) => setHp(e.target.value)} fluid label="hp" placeholder="hp" name="hp" />
+          <Form.Input fluid label="Name" placeholder="Name" name="name" onChange={(e) => setName(e.target.value)} />
+          <Form.Input fluid label="hp" placeholder="hp" name="hp" onChange={(e) => setHp(e.target.value)} />
           <Form.Input
             fluid
             label="Front Image URL"
             placeholder="url"
             name="frontUrl"
-            onChange={(e) => setFrontSprite(e.target.value)} 
+            onChange={(e) => setFrontSprites(e.target.value)}
           />
           <Form.Input
             fluid
             label="Back Image URL"
             placeholder="url"
             name="backUrl"
-            onChange={(e) => setBackSprite(e.target.value)} 
+            onChange={(e) => setBackSprites(e.target.value)}
           />
         </Form.Group>
         <Form.Button>Submit</Form.Button>

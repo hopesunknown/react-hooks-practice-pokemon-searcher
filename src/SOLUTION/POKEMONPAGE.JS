@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import PokemonCollection from "./PokemonCollection";
 import PokemonForm from "./PokemonForm";
 import Search from "./Search";
 import { Container } from "semantic-ui-react";
 
 function PokemonPage() {
-  const [pokeData, setPokeData] = useState([])
-  const [search, setSearch] = useState("")
-
+  const [pokeData, setPokeData] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     fetch('http://localhost:3001/pokemon')
@@ -15,15 +14,14 @@ function PokemonPage() {
     .then((pokeData) => setPokeData(pokeData))
   }, [])
 
-
 const filteredArray = pokeData.filter((pokemon) => {
-    return pokemon.name.toLowerCase().includes(search.toLowerCase());
-  })
+  return pokemon.name.toLowerCase().includes(search.toLowerCase())
+})
 
-  function handleAdd(newPokemon) {
-    const addPokemonArray = [...pokeData, newPokemon]
-    setPokeData(addPokemonArray)
-  }
+function handleAdd(newPokemon) {
+  const addPokemonArray = [...pokeData, newPokemon]
+  setPokeData(addPokemonArray)
+}
 
   return (
     <Container>

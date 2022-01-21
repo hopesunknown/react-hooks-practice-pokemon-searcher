@@ -7,9 +7,9 @@ function Search({ search, setSearch }) {
         <input className="prompt" 
 
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
-
+        onChange={(event) => setSearch(event.target.value)}
         />
+        
         <i className="search icon" />
       </div>
     </div>
